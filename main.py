@@ -17,7 +17,18 @@
 # To keep population levels down since there were a limited amount of apples to eat 
 #
 # Princess Noodle lived on this snake planet. (This fact was confirmed by snake reporters)
-# Each year her older siblings came back from battle 
+# Each year her older siblings came back from battle, blazing with victory, tearing through street as huge snake giants.
+# She always felt so small and looked down upon. The garden snake in the family of dragons.
+#
+# But this year was her year to shine. To be the best and the baddest and the biggest snake around the snake planet.
+# Princess Noodle had been trainning all year to:
+    # 1. locate the best and juiciest apples
+    # 2. sneak and slither past the other snakes
+    # 3. Not get tangled around herself
+# She was ready.
+# Winning!!
+# Princess Noodle won and totally demolished those other snakes.
+# Now she is known around the snake shaped planet with snakes as Queen Noodle.
 
 import random
 import typing
@@ -48,16 +59,33 @@ def start(game_state: typing.Dict):
 def end(game_state: typing.Dict):
     print("GAME OVER\n")
 
-# returns array of bad directions
-def floodfill(game_state: typing.Dict):
-    bad_moves = [] #determining this
-    my_head = game_state["you"]["body"][0]  # Coordinates of your head
-    my_neck = game_state["you"]["body"][1]  # coordinates of neck
-    print()
+# # returns array of bad directions
+# def floodfill(game_state: typing.Dict):
+#     bad_moves = [] #determining this
+#     my_head = game_state["you"]["body"][0]  # Coordinates of your head
+#     my_neck = game_state["you"]["body"][1]  # coordinates of neck
+#     print()
 
-    
-    #1. 
-    #2. 
+#     visited_list = []
+#     to_check = []
+
+#     unsafe_map = set()
+
+#     for snake in game_state["snakes"]:
+#         for body_part in snake["body"]:
+#             unsafe_map.insert((body_part["x"], body_part["y"]))
+
+    # if (3, 2) in unsafe_map:
+        # we know this isn't safe
+
+    # ......
+    # ..hn..
+    # ......
+
+    for x in game_state["board"][]:
+        my_head = 
+    #1. create visited nodes list
+    #2. to check list
     #3. 
 
     
