@@ -10,8 +10,18 @@
 # To get you started we've included code to prevent your Battlesnake from moving backwards.
 # For more info see docs.battlesnake.com
 
+# Princess Noodle Backstory (✿◕‿◕)
+# Once upon a time in a far off planet there was a kingdom of snakes. It was a snake planet.
+# It was a snake shaped planet with snakes. 
+# Each year there was an epic (and i mean EPIC) battle TO THE DEATH for the snakes.
+# To keep population levels down since there were a limited amount of apples to eat 
+#
+# Princess Noodle lived on this snake planet. (This fact was confirmed by snake reporters)
+# Each year her older siblings came back from battle 
+
 import random
 import typing
+import math
 
 
 # info is called when you create your Battlesnake on play.battlesnake.com
@@ -22,9 +32,9 @@ def info() -> typing.Dict:
 
     return {
         "apiversion": "1",
-        "author": "",  # TODO: Your Battlesnake Username
-        "color": "#888888",  # TODO: Choose color
-        "head": "default",  # TODO: Choose head
+        "author": "petraDeBat",  # TODO: Your Battlesnake Username
+        "color": "#00cc00",  # TODO: Choose color
+        "head": "dragon",  # TODO: Choose head
         "tail": "default",  # TODO: Choose tail
     }
 
@@ -38,6 +48,24 @@ def start(game_state: typing.Dict):
 def end(game_state: typing.Dict):
     print("GAME OVER\n")
 
+# returns array of bad directions
+def floodfill(game_state: typing.Dict):
+    bad_moves = [] #determining this
+    my_head = game_state["you"]["body"][0]  # Coordinates of your head
+    my_neck = game_state["you"]["body"][1]  # coordinates of neck
+    print()
+
+    
+    #1. 
+    #2. 
+    #3. 
+
+    
+
+    
+
+    
+    return bad_moves
 
 # move is called on every turn and returns your next move
 # Valid moves are "up", "down", "left", or "right"
@@ -79,8 +107,9 @@ def move(game_state: typing.Dict) -> typing.Dict:
 
     # TODO: Step 2 - Prevent your Battlesnake from colliding with itself
 
-
-
+    #HIIII
+    #hello!!!!!
+    
     my_body = game_state['you']['body']
     for snake in game_state['board']['snakes']:
 
@@ -115,9 +144,27 @@ def move(game_state: typing.Dict) -> typing.Dict:
 
     # Choose a random move from the safe ones
     next_move = random.choice(safe_moves)
+    print(safe_moves)
 
     # TODO: Step 4 - Move towards food instead of random, to regain health and survive longer
     # food = game_state['board']['food']
+    my_health = game_state['you']['health']
+    if(my_health < 101):
+        try:
+            nearest_food = game_state['board']['food'][0]
+        except:
+            nearest_food = 0
+        for food in game_state['board']["food"]:
+            if abs(food["x"] - my_head["x"] + food["y"] - my_head["y"]) < abs(nearest_food["x"] - my_head["x"] + nearest_food["y"] - my_head["y"]):
+                nearest_food = food
+        if nearest_food["x"] < my_head["x"] and is_move_safe["left"] == True:
+            next_move = "left"
+        elif nearest_food["x"] > my_head["x"] and is_move_safe["right"] == True:
+            next_move = "right"
+        elif nearest_food["y"] < my_head["y"] and is_move_safe["down"] == True:
+            next_move = "down"
+        elif nearest_food["y"] > my_head["y"] and is_move_safe["up"] == True:
+            next_move = "up"
 
     print(f"MOVE {game_state['turn']}: {next_move}")
     return {"move": next_move}
