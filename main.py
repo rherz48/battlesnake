@@ -63,11 +63,42 @@ def move(game_state: typing.Dict) -> typing.Dict:
         is_move_safe["up"] = False
 
     # TODO: Step 1 - Prevent your Battlesnake from moving out of bounds
-    # board_width = game_state['board']['width']
-    # board_height = game_state['board']['height']
+    board_width = game_state['board']['width']
+    board_height = game_state['board']['height']
+
+    if(my_head["x"]+1 == board_width):
+        is_move_safe["right"] = False
+        
+    elif (my_head["x"] == 0):
+        is_move_safe["left"] = False
+
+    if(my_head["y"]+1 == board_height):
+        is_move_safe["up"] = False
+    elif(my_head["y"] == 0):
+        is_move_safe["down"] = False
 
     # TODO: Step 2 - Prevent your Battlesnake from colliding with itself
-    # my_body = game_state['you']['body']
+
+
+
+    my_body = game_state['you']['body']
+    for snake in game_state['board']['snakes']:
+
+      
+        for segment in snake["body"]:
+
+            if((my_head["x"] == segment["x"]+1) and (my_head["y"] == segment["y"])):
+                is_move_safe["left"] = False
+            elif((my_head["x"] == segment["x"]-1 ) and (my_head["y"] == segment["y"])):
+                is_move_safe["right"] = False
+
+            elif((my_head["y"] == segment["y"]-1 ) and (my_head["x"] == segment["x"])):
+                is_move_safe["up"] = False
+            elif((my_head["y"] == segment["y"]+1 ) and (my_head["x"] == segment["x"])):
+                is_move_safe["down"] = False
+
+        print(is_move_safe)
+
 
     # TODO: Step 3 - Prevent your Battlesnake from colliding with other Battlesnakes
     # opponents = game_state['board']['snakes']
